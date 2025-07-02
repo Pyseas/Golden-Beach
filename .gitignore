@@ -3,6 +3,8 @@
 *.py[cod]
 *$py.class
 dist
+*.egg-info
+/site
 
 # Environments
 .venv
