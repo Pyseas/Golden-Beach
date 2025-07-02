@@ -126,11 +126,15 @@ def lcomb_str(lcomb: pd.DataFrame) -> str:
         if isinstance(lcname, int):
             lcname = f'{lcname:04d}'
         outstr += f'LCOMB {lcname: >4} '
+        lc_count = 0
         for ind, val in lc.items():
             loadcn = loadcns[ind]
             if isinstance(loadcn, int):
                 loadcn = f'{loadcn:04d}'
             outstr += f'{loadcn: >4}{val: >6}'
+            lc_count += 1
+            if lc_count % 6 == 0:
+                outstr += f'\nLCOMB {lcname: >4} '
 
         outstr += '\n'
 
