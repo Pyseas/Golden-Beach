@@ -1,19 +1,12 @@
-[tool.poetry]
+[project]
 name = "golden-beach"
-version = "0.1.4"
-description = ""
-authors = ["David <dave.hankin@gmail.com>"]
+version = "0.1.5"
+description = "Add your description here"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-pandas = "^2.2.2"
-openpyxl = "^3.1.5"
-numpy = "^2.1.1"
-mkdocs-material = "^9.5.34"
-mkdocstrings-python = "^1.11.1"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs-material>=9.6.15",
+    "mkdocstrings-python>=1.16.12",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.0",
+]
