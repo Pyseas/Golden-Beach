@@ -185,8 +185,9 @@ def make_new_model(xlname: str, basename: str, newname: str):
 
     mems = pd.read_excel(
         xlpath, sheet_name='members', skiprows=1, usecols='A:N',
-        converters={'FIX_A': str, 'FIX_B': str})
+        converters={'A': str, 'B': str, 'FIX_A': str, 'FIX_B': str})
     mems.fillna(-123456, inplace=True)
+    print(mems)
     mems['ID'] = mems['A'] + mems['B']
     nmem = len(mems.index)
     new_mems = []
