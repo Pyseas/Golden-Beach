@@ -1,11 +1,71 @@
 
-# import numpy as np
+import numpy as np
 import pandas as pd
 import os
 from pathlib import Path
 from typing import Any
 
 PATH = Path('.')
+
+
+def convert_jnt(line: str) -> str:
+
+    coords_txt = line[11:54].ljust(54, ' ')
+    coords = np.zeros((3, ))
+    for ixyz in range(3):
+        xm = 0
+        for shift, div in [[0, 1], [21, 100]]:
+            istart = shift + ixyz * 7
+            numstr = coords_txt[istart:istart + 7]
+            if numstr.isspace():
+                val = 0
+            else:
+                if numstr[-2] == '-':
+                    numstr = numstr[:-2] + 'E' + numstr[-2:]
+                if numstr[-2] == '+':
+                    numstr = numstr[:-2] + 'E' + numstr[-2:]
+                val = float(numstr)
+            xm += val / div
+
+        coords[ixyz] = xm
+
+    fmt = '>7.3f'
+    outstr = ''
+    for val in coords:
+        if val <= -100:
+            pass
+        elif -100 < val <= -10:
+            fmt = '>7.2f'
+        elif -10 < val <= 0:
+            fmt = '>7.3f'
+        elif 0 < val <= 10:
+            fmt = '>7.4f'
+        elif 10 < val <= 100:
+            fmt = '>7.3f'
+        elif 100 < val <= 1000:
+            fmt = '>7.4f'
+        outstr += f'{val:{fmt}}'
+
+    new_line = line[:11] + outstr
+    if len(line) > 55:
+        new_line += ' ' * 21 + line[53:-1]
+    new_line += '\n'
+
+    return new_line
+
+
+def convert_joint_format(infile: str, outfile: str) -> None:
+
+    new_file = ''
+    with open(PATH / infile, 'r') as f:
+        for line in f:
+            if line[:5] == 'JOINT' and len(line.strip()) > 32:
+                if line[-6:-1] != 'ELASTI':
+                    line = convert_jnt(line)
+            new_file += line
+
+    with open(PATH / outfile, 'w') as f:
+        f.write(new_file)
 
 
 def mem_str(row: Any, line: str) -> str:
