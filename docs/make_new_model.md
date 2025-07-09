@@ -28,9 +28,9 @@ The script looks for a line in the base file containing *ANALYSIS TYPE* and repl
 ## joints
 Adds new joints or modifies existing joints. Blank cells in the spreadsheet are ignored.
 
-If a joint doesn't exist in the base file then a new member is created.
+If a joint doesn't exist in the base file then a new joint is created.
 
-For PILEHD fixity enter PILEHD in the FX column.
+For PILEHD fixity enter PILEHD in the Special column.
 
 ## members
 Adds new members or modifies existing members. Blank cells in the spreadsheet are ignored.

@@ -1,10 +1,10 @@
 # Introduction
-golden_beach is a Python library for the Golden Beach project (J019) to write and update SACS files based on data contained in spreadsheets.
+golden_beach is a Python library to write and update SACS files based on data contained in spreadsheets.
 
 ## Installation
 Use pip to install golden_beach wheel
 ```bash
-pip install golden_beach-0.1.0-py3-none-any.whl
+pip install golden_beach-0.1.7-py3-none-any.whl
 ```
 
 ## Usage

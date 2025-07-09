@@ -55,6 +55,14 @@ def convert_jnt(line: str) -> str:
 
 
 def convert_joint_format(infile: str, outfile: str) -> None:
+    """Reads infile, converts all joint coordinates from SACS m/cm format to
+    readable format and writes to outfile.
+
+    Args:
+        infile (str): Input filename.
+        outfile (str): Output filename.
+
+    """
 
     new_file = ''
     with open(PATH / infile, 'r') as f:
