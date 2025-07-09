@@ -60,8 +60,10 @@ def convert_joint_format(infile: str, outfile: str) -> None:
     with open(PATH / infile, 'r') as f:
         for line in f:
             if line[:5] == 'JOINT' and len(line.strip()) > 32:
-                if line[-6:-1] != 'ELASTI':
+                if line[-7:-1] != 'ELASTI':
                     line = convert_jnt(line)
+                else:
+                    print(line)
             new_file += line
 
     with open(PATH / outfile, 'w') as f:
